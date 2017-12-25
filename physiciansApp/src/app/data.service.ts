@@ -15,4 +15,11 @@ export class DataService {
       .map(result => this.result = result.json().data);
   }
 
+  getPhysicians() {
+
+	return this._http.get("/api/physicians")
+		.map(result => this.result = result.json().data);
+
+  }
+
 }
