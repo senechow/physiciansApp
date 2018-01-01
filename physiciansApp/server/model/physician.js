@@ -6,8 +6,10 @@ var physicianSchema = new Schema({
 	firstName: String,
     lastName: String,
     description: String,
-    locXCoord: Number,
-    locYCoord: Number,
+    address: String,
+    city: String,
+    province: String,
+    postalCode: String,
     email: String  
 
 });

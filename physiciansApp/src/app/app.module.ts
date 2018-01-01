@@ -1,20 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { routing } from './app.routing';
 
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
-import { DataService } from './data.service';
+
+import {PhysicianService} from './_services/physician.service';
+
+import {HomeComponent} from './home/home.component';
+import {PhysicianComponent} from './physicians/physicians.component';
+import {UploadPhysicianComponent} from './uploadPhysicians/uploadPhysicians.component';
+import {PhysiciansUploadLinkComponent} from './physiciansUploadLink/physiciansUploadLink.component';
+import {PhysiciansSearchComponent} from './physiciansSearch/physiciansSearch.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    PhysicianComponent,
+    UploadPhysicianComponent,
+    PhysiciansUploadLinkComponent,
+    PhysiciansSearchComponent,
   ],
   imports: [
     BrowserModule,
-    HttpModule              // <-Add HttpModule
+    HttpModule,
+    FormsModule,
+    routing
   ],
-  providers: [DataService], // <-Add DataService
+  providers: [
+  	PhysicianService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,8 +8,9 @@ const Physician = require("../model/physician");
 const User = require("../model/user");
 
 // Error handling
-const sendError = (err, res) => {
+const sendError = (err, res, data) => {
     response.status = 501;
+    response.data = data;
     response.message = typeof err == 'object' ? err.message : err;
     res.status(501).json(response);
 };
@@ -35,20 +36,7 @@ router.get('/users', (req, res) => {
         res.json(response);
 
     });
-/*
-    connection((db) => {
-        db.collection('users')
-            .find()
-            .toArray()
-            .then((users) => {
-                response.data = users;
-                res.json(response);
-            })
-            .catch((err) => {
-                sendError(err, res);
-            });
-    });
-*/
+
 });
 
 router.get('/physicians', (req, res, next) => {
@@ -65,25 +53,17 @@ router.get('/physicians', (req, res, next) => {
 
 router.post('/physicians', (req, res, next) => {
 
-
-    /*let newPhysician = new Physician(
-        req.body.firstName,
-        req.body.lastName,
-        req.body.description,
-        req.body.locXCoord,
-        req.body.locYCoord,
-        req.body.email
-    );*/
-
     let newPhysician = new Physician(req.body);
+    newPhysician._id = mongoose.Types.ObjectId();
     
     newPhysician.save(function(err) {
         if(err) {
-            sendError(err, res);
+            sendError(err, res, newPhysician);
+        } else {
+            console.log("Saved physician!");
+            response.data = newPhysician;
+            res.json(response);
         }
-        console.log("Saved physician!");
-        response.data = newPhysician;
-        res.json(response);
 
     });
 
@@ -108,8 +88,10 @@ router.put('/physicians/:id', (req, res, next) => {
         "firstName": req.body.firstName,
         "lastName": req.body.lastName,
         "description": req.body.description,
-        "locXCoord": req.body.locXCoord,
-        "locYCoord": req.body.locYCoord,
+        "address": req.body.address,
+        "province": req.body.province,
+        "city": req.body.city,
+        "postalCode": req.body.postalCode,
         "email": req.body.email
     };
 

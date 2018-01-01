@@ -1,30 +1,23 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Physician } from '../_models/physician';
 import { PhysicianService } from '../_services/physician.service';
 
 @Component({
-	selector: 'physicians',
-	templateUrl: './physicians.component.html'
+	selector: 'physiciansSearch',
+	templateUrl: './physiciansSearch.component.html'
 })
-export class PhysicianComponent implements OnInit {
+export class PhysiciansSearchComponent {
 
 	physicians: Physician[] = [];
 
 	constructor(
+		private router: Router,
 		private physicianService : PhysicianService
 	) { }
 
-	ngOnInit() {
-		this.getAll();
+	searchPhysicians() {
+		this.router.navigate(['/physicians']);
 	}
-
-	getAll() {
-		this.physicianService.getAll()
-		.subscribe(physicians =>{
-			this.physicians = physicians;
-		});
-	}
-
-
 }
