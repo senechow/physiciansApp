@@ -1,6 +1,11 @@
-<div class="row">
-	<div class="col-md-8">
-		<h2>Find a Doctor New You!</h2>
-		<input type="text" placeholder="Enter in either your doctor's name or address"/> <span> <button class="btn btn-primary" (click)="searchPhysicians()">Search</button> </span>
+<div id="searhPhysiciansDiv" class="row">
+	<div class="col-md-8 text-center mx-auto">
+		<h1>Find a Doctor At A Location!</h1>
+		<div class="input-group mb-3">
+			<input id="searchPhysicians" class="form-control" type="text" placeholder="Enter in either your doctor's name or address"/>
+				<div class="input-group-append">
+					<span> <button class="btn btn-primary" (click)="searchPhysicians()">Search</button> </span>
+				</div>
+		</div>
 	</div>
 </div>

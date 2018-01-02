@@ -6,7 +6,8 @@ import { PhysicianService } from '../_services/physician.service';
 
 @Component({
 	selector: 'physiciansSearch',
-	templateUrl: './physiciansSearch.component.html'
+	templateUrl: './physiciansSearch.component.html',
+	styleUrls: ['./physiciansSearch.component.css']
 })
 export class PhysiciansSearchComponent {
 
