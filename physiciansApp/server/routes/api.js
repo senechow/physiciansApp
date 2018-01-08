@@ -92,6 +92,7 @@ router.put('/physicians/:id', (req, res, next) => {
         "province": req.body.province,
         "city": req.body.city,
         "postalCode": req.body.postalCode,
+        "phoneNumber": req.body.phoneNumber,
         "email": req.body.email
     };
 

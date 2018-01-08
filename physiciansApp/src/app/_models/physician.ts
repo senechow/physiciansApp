@@ -9,11 +9,12 @@ export class Physician {
 	    public city: String,
 	    public province: String,
 	    public postalCode: String,
+	    public phoneNumber: String,
 	    public email: String
     ) {}
 
 	static CreateDefault() : Physician {
-		return new Physician('', '', '', '', '', '', '', '', '');
+		return new Physician('', '', '', '', '', '', '', '', '', '');
 	}
 
 }

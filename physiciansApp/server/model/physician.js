@@ -10,6 +10,7 @@ var physicianSchema = new Schema({
     city: String,
     province: String,
     postalCode: String,
+    phoneNumber: String,
     email: String  
 
 });
