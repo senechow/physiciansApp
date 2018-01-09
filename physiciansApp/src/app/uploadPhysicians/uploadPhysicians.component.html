@@ -5,11 +5,15 @@
 
 		<h2>Upload Your Doctor</h2>
 		
+		<p>* means this is required.</p>
+
 		<form id="physicianForm" (ngSubmit) = "insertPhysician()" novalidate [formGroup]="physicianForm">
 			
 
 			<div id="firstNameFormGroup" class="form-group" formGroupName="firstNameFormGroup">
-				<label for="firstName">First Name</label>
+				<label for="firstName" [ngClass]="{
+					'text-danger': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
+				}">First Name *</label>
 				<input id="firstNameInput" type="text" class="form-control" formControlName="firstNameInput" [(ngModel)]="phys.firstName" required [ngClass]="{
 					'is-invalid': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
 				}"/>
@@ -20,7 +24,9 @@
 			</div>
 			
 			<div id="lastNameFormGroup" class="form-group" formGroupName="lastNameFormGroup">
-				<label for="lastName">Last Name</label>
+				<label for="lastName" [ngClass]="{
+					'text-danger': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
+				}">Last Name *</label>
 				<input id="lastNameInput" type="text" class="form-control" formControlName="lastNameInput" [(ngModel)]="phys.lastName" required [ngClass]="{
 					'is-invalid': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
 				}"/>
@@ -30,7 +36,9 @@
      			</div>
 			</div>
 			<div id="addressFormGroup" class="form-group" formGroupName="addressFormGroup">
-				<label for="address">Street Address</label>
+				<label for="address" [ngClass]="{
+					'text-danger': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
+				}">Street Address *</label>
 				<input id="addressInput" type="text" class="form-control" formControlName="addressInput" [(ngModel)]="phys.address" required [ngClass]="{
 					'is-invalid': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
 				}"/>
@@ -39,10 +47,13 @@
         			Street address is required
      			</div>
 			</div>
-			<!--
-			<div id="provinceFormGroup" name="provinceFormGroup" class="form-group">
-				<label for="province">Province</label>
-				<select id="provinceSelector" class="form-control" name="province" [(ngModel)]="phys.province" required>
+			<div id="provinceFormGroup" class="form-group" formGroupName="provinceFormGroup">
+				<label for="province" [ngClass]="{
+					'text-danger': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
+				}">Province *</label>
+				<select id="provinceSelector" class="form-control" formControlName="provinceSelector" [(ngModel)]="phys.province" required [ngClass]="{
+					'is-invalid': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
+				}">
 					<option value="" disabled selected>Select One</option>
 					<option>British Columbia</option>
 					<option>Alberta</option>
@@ -58,10 +69,15 @@
 					<option>Northwest Territories</option>
 					<option>Nunavut</option>
 				</select>
+				<div class="form-control-feedback invalid-feedback"
+           			*ngIf="provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)">
+        			Province is required
+     			</div>
 			</div>
-			-->
 			<div id="cityFormGroup" class="form-group" formGroupName="cityFormGroup">
-				<label for="city">City</label>
+				<label for="city" [ngClass]="{
+					'text-danger': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
+				}">City *</label>
 				<input type="text" class="form-control" formControlName="cityInput" [(ngModel)]="phys.city" required [ngClass]="{
 					'is-invalid': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
 				}"/>
@@ -71,7 +87,9 @@
      			</div>
 			</div>
 			<div id="postalCodeFormGroup" class="form-group" formGroupName="postalCodeFormGroup">
-				<label for="postalCode">Postal Code</label>
+				<label for="postalCode" [ngClass]="{
+					'text-danger': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
+				}">Postal Code *</label>
 				<input id="postalCodeInput" type="text"  class="form-control" formControlName="postalCodeInput" placeholder="(eg. V1V 1V1)" [(ngModel)]="phys.postalCode" required [ngClass]="{
 					'is-invalid': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
 				}"/>
@@ -82,7 +100,9 @@
      			</div>
 			</div>
 			<div id="emailFormGroup" class="form-group" formGroupName="emailFormGroup">
-				<label for="email">Email</label>
+				<label for="email" [ngClass]="{
+					'text-danger': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
+				}">Email</label>
 				<input id="emailInput" type="text" formControlName="emailInput" placeholder="(eg. example@test.com)" class="form-control" [(ngModel)]="phys.email" [ngClass]="{
 					'is-invalid': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
 				}"/>
@@ -92,7 +112,9 @@
      			</div>
 			</div>
 			<div id="phoneNumberFormGroup" class="form-group" formGroupName="phoneNumberFormGroup">
-				<label for="phoneNumber">Phone</label>
+				<label for="phoneNumber" [ngClass]="{
+					'text-danger': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
+				}">Phone *</label>
 				<input id="phoneNumberInput" type="text" formControlName="phoneNumberInput" placeholder="(eg. 1112223333)" class="form-control" [(ngModel)]="phys.phoneNumber" required [ngClass]="{
 					'is-invalid': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
 				}"/>
@@ -100,12 +122,12 @@
            			*ngIf="phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)">
         			<p class="text-danger" *ngIf="phoneNumberInput.errors.required">Phone number is required.</p>
       				<p class="text-danger" *ngIf="phoneNumberInput.errors.pattern">Phone number must be in all digits.</p>
-      				<p class="text-danger" *ngIf="phoneNumberInput.errors.minLength">Phone number must be at least 10 digits in length.</p>
+      				<p class="text-danger" *ngIf="phoneNumberInput.errors.minlength">Phone number must be at least 10 digits in length.</p>
      			</div>
 			</div>
 			<div id="descriptionFormGroup" class="form-group" formGroupName="descriptionFormGroup">
 				<label for="phone">Description</label>
-				<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [(ngModel)]="phys.description" required ></textarea>
+				<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [(ngModel)]="phys.description"></textarea>
 			</div>
 			<div class="form-group">
 				<button id="submitPhysiciansFormButton" class="btn btn-primary" [disabled]="!physicianForm.valid">Submit</button>

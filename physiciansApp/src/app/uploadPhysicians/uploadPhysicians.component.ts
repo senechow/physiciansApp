@@ -41,9 +41,9 @@ export class UploadPhysicianComponent implements OnInit {
 		this.cityInput = new FormControl('', Validators.required);
 		this.postalCodeInput = new FormControl('', [
 			Validators.required,
-			Validators.pattern('(^[a-z]\\d[a-z]\\d[a-z]\\d$)|(^[a-z]\\d[a-z] \\d[a-z]\\d$)')
+			Validators.pattern('(^[A-Za-z]\\d[A-Za-z]\\d[A-Za-z]\\d$)|(^[A-Za-z]\\d[A-Za-z] \\d[A-Za-z]\\d$)')
 		]);
-		this.emailInput = new FormControl('', Validators.pattern('^ @]*@[^ @]*'));
+		this.emailInput = new FormControl('', Validators.pattern('^\\w+([\.-]?\\w+)*@\\w+([\.-]?\\w+)*(\.\\w{2,3})+$'));
 		this.phoneNumberInput = new FormControl('', [
 			Validators.required,
 			Validators.minLength(10),
@@ -82,7 +82,7 @@ export class UploadPhysicianComponent implements OnInit {
 			}),
 			descriptionFormGroup: new FormGroup({
 				descriptionInput: this.descriptionInput
-			});
+			})
 		});
 	}
 
