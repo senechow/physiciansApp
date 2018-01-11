@@ -7,10 +7,14 @@ import { routing } from './app.routing';
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 
+import { AgmCoreModule } from '@agm/core';
+
 import {PhysicianService} from './_services/physician.service';
 
 import {HomeComponent} from './home/home.component';
-import {PhysicianComponent} from './physicians/physicians.component';
+import {PhysiciansComponent} from './physicians/physicians.component';
+import {PhysiciansMap} from './physiciansMap/physiciansMap.component';
+import {PhysiciansListComponent} from './physiciansList/physiciansList.component';
 import {UploadPhysicianComponent} from './uploadPhysicians/uploadPhysicians.component';
 import {PhysiciansUploadLinkComponent} from './physiciansUploadLink/physiciansUploadLink.component';
 import {PhysiciansSearchComponent} from './physiciansSearch/physiciansSearch.component';
@@ -19,7 +23,9 @@ import {PhysiciansSearchComponent} from './physiciansSearch/physiciansSearch.com
   declarations: [
     AppComponent,
     HomeComponent,
-    PhysicianComponent,
+    PhysiciansComponent,
+    PhysiciansMap,
+    PhysiciansListComponent,
     UploadPhysicianComponent,
     PhysiciansUploadLinkComponent,
     PhysiciansSearchComponent,
@@ -29,7 +35,10 @@ import {PhysiciansSearchComponent} from './physiciansSearch/physiciansSearch.com
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAe5sUoikuU3vUMgEq5v4of2dcGj4-N5Hc'
+    })
   ],
   providers: [
   	PhysicianService

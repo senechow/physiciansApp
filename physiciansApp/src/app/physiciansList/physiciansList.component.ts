@@ -4,10 +4,10 @@ import { Physician } from '../_models/physician';
 import { PhysicianService } from '../_services/physician.service';
 
 @Component({
-	selector: 'physicians',
-	templateUrl: './physicians.component.html'
+	selector: 'physiciansList',
+	templateUrl: './physiciansList.component.html'
 })
-export class PhysiciansComponent implements OnInit {
+export class PhysiciansListComponent implements OnInit {
 
 	physicians: Physician[] = [];
 
