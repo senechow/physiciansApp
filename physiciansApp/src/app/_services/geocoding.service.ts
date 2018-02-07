@@ -10,9 +10,15 @@ export class GeoCodingService {
 	 getCoordinates(address : String, 
 	 	province : String, city : String,  postalCode : String) {
 
-	 	let url = appConfig.googleGeoCodingUrl + "?address=" + address.split(' ').join('+')
-	 		+ "&components=country:CA|administrative_area_level_1:" + province + "|locality:" + city +  "|postal_code:" + postalCode
+	 	const formattedAddress = address.replace(/ /g, '+');
+	 	const formattedProvince = province.replace(/ /g, '+');
+	 	const formattedCity = city.replace(/ /g, '+');
+	 	const formattedPostalCode = postalCode.replace(/ /g, '+');
+
+	 	let url = appConfig.googleGeoCodingUrl + "?address=" + formattedAddress
+	 		+ "&components=country:CA|administrative_area_level_1:" + formattedProvince + "|locality:" + formattedCity +  "|postal_code:" + formattedPostalCode
 	 		+ "&key=" + appConfig.googleAPIKey;
+	 	console.log('GET ' + url);
 
 	 	return this._http.get(url)
 	 		.map((response : Response) => {

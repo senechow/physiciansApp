@@ -2,19 +2,21 @@ export class Physician {
 
 	constructor(
 		public _id: string,
-	    public firstName: String,
-	    public lastName: String,
-	    public description: String,
-	    public address: String,
-	    public city: String,
-	    public province: String,
-	    public postalCode: String,
-	    public phoneNumber: String,
-	    public email: String
+	    public firstName: string,
+	    public lastName: string,
+	    public description: string,
+	    public address: string,
+	    public city: string,
+	    public province: string,
+	    public postalCode: string,
+	    public phoneNumber: string,
+	    public email: string
+	    public lat: number,
+	    public long: number
     ) {}
 
 	static CreateDefault() : Physician {
-		return new Physician('', '', '', '', '', '', '', '', '', '');
+		return new Physician('', '', '', '', '', '', '', '', '', '', null, null);
 	}
 
 }

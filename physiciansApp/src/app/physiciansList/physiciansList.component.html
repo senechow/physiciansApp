@@ -1,38 +1,42 @@
-
-
-
-		
-
-		<div *ngFor="let physician of physicians">	
-			
-			<div class="row">
-				<h3>Dr. {{physician.firstName}} {{physician.lastName}}</h3>
-			</div>
-			
-			<div class="row">
-				<div class="col-md-6">
-				<div class="row">
-					<p><strong>Address:</strong> {{physician.address}}</p>
-				</div>
-				<div class="row">
-					<p>{{physician.city}}, {{physician.province}}</p>
-				</div>
-				<div class="row">
-					<p>{{physician.postalCode}}</p>
-				</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<p><strong>Telephone:</strong> {{physician.phoneNumber}}</p>
-			</div>
-			
-			<div class="row">
-				<p><strong>Email:</strong> {{physician.email}}</p>
-			</div>
-			
-			<div class="row">
-				<p><strong>Description:</strong> {{physician.description}}</p>
-			</div>
-
+<div *ngFor="let physician of physicians">	
+	
+	<div class="row">
+		<h3>Dr. {{physician.firstName}} {{physician.lastName}}</h3>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+		<div class="row">
+			<p><strong>Address:</strong> {{physician.address}}</p>
 		</div>
+		<div class="row">
+			<p>{{physician.city}}, {{physician.province}}</p>
+		</div>
+		<div class="row">
+			<p>{{physician.postalCode}}</p>
+		</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<p><strong>Telephone:</strong> {{physician.phoneNumber}}</p>
+	</div>
+	
+	<div class="row">
+		<p><strong>Email:</strong> {{physician.email}}</p>
+	</div>
+	
+	<div class="row">
+		<p><strong>Description:</strong> {{physician.description}}</p>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<p><strong>Latitude:</strong> {{physician.lat}}</p>
+		</div>
+		<div class="col-md-6">
+			<p><strong>Longitude:</strong> {{physician.long}}</p>
+		</div>
+	</div>
+
+</div>

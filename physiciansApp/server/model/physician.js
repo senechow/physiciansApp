@@ -11,7 +11,9 @@ var physicianSchema = new Schema({
     province: String,
     postalCode: String,
     phoneNumber: String,
-    email: String  
+    email: String,
+    lat: Number,
+    long: Number  
 
 });
 

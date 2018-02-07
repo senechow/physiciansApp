@@ -8,7 +8,7 @@ import { GeoCodingService } from '../_services/geocoding.service';
 	templateUrl: './physiciansMap.component.html',
 	styleUrls: ['physiciansMap.component.css']
 })
-export class PhysiciansMap {
+export class PhysiciansMapComponent implements OnInit {
 
 	lat : number;
 	long : number;
@@ -17,6 +17,11 @@ export class PhysiciansMap {
 	constructor(
 		private geoCodingService : GeoCodingService
 	) { }
+
+	ngOnInit() {
+		this.lat = 49.246292;
+		this.long = -123.116226;
+	}
 
 	getPhysicianCoordinates(physician : Physician) {
 

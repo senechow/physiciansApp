@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 import { Physician } from '../_models/physician';
 import { PhysicianService } from '../_services/physician.service';
+import { GeoCodingService } from '../_services/geocoding.service';
 
 @Component({
 	selector: 'uploadPhysicians',
@@ -10,7 +11,6 @@ import { PhysicianService } from '../_services/physician.service';
 })
 export class UploadPhysicianComponent implements OnInit {
 
-	phys : Physician;
 	physicianForm : FormGroup;
 	firstNameInput : FormControl;
 	lastNameInput : FormControl;
@@ -24,11 +24,10 @@ export class UploadPhysicianComponent implements OnInit {
 
 	constructor(
 		private physicianService : PhysicianService,
-		private fb: FormBuilder
+		private geocodingService : GeoCodingService
 		) { }
 
 	ngOnInit() {
-		this.phys = Physician.CreateDefault();
 		this.createFormControls();
 		this.createForm();
 	}
@@ -49,7 +48,7 @@ export class UploadPhysicianComponent implements OnInit {
 			Validators.minLength(10),
 			Validators.pattern("\\d+")
 		]);
-		this.descriptionInput = new FormControl();
+		this.descriptionInput = new FormControl('', Validators.maxLength(200));
 
 	}
 
@@ -87,12 +86,33 @@ export class UploadPhysicianComponent implements OnInit {
 	}
 
 	insertPhysician() {
-		console.log(this.phys);
-		this.physicianService.insert(this.phys)
+		let phys = Physician.CreateDefault();
+		phys.firstName = this.firstNameInput.value;
+		phys.lastName = this.lastNameInput.value;
+		phys.address = this.addressInput.value;
+		phys.province = this.provinceSelector.value;
+		phys.city = this.cityInput.value;
+		phys.postalCode = this.postalCodeInput.value;
+		phys.email = this.emailInput.value;
+		phys.phoneNumber = this.phoneNumberInput.value;
+		phys.description = this.descriptionInput.value;
+		this.geocodingService.getCoordinates(phys.address, phys.province, phys.city, phys.postalCode)
+			.subscribe(coords => {
+			if(coords.status === "OK") {
+				phys.lat = coords.lat;
+				phys.long = coords.lng;
+				console.log("physician found!");
+			} else {
+				console.log("physician not found!");
+			};
+
+		console.log(phys);
+
+		this.physicianService.insert(phys)
 			.subscribe(
 				data => {
-					console.log(this.phys);
-					this.phys = Physician.CreateDefault();
+					console.log(phys);
+					this.physicianForm.reset();
 				}
 			)
 	}

@@ -14,7 +14,7 @@
 				<label for="firstName" [ngClass]="{
 					'text-danger': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
 				}">First Name *</label>
-				<input id="firstNameInput" type="text" class="form-control" formControlName="firstNameInput" [(ngModel)]="phys.firstName" required [ngClass]="{
+				<input id="firstNameInput" type="text" class="form-control" formControlName="firstNameInput" [ngClass]="{
 					'is-invalid': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -27,7 +27,7 @@
 				<label for="lastName" [ngClass]="{
 					'text-danger': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
 				}">Last Name *</label>
-				<input id="lastNameInput" type="text" class="form-control" formControlName="lastNameInput" [(ngModel)]="phys.lastName" required [ngClass]="{
+				<input id="lastNameInput" type="text" class="form-control" formControlName="lastNameInput" [ngClass]="{
 					'is-invalid': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -39,7 +39,7 @@
 				<label for="address" [ngClass]="{
 					'text-danger': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
 				}">Street Address *</label>
-				<input id="addressInput" type="text" class="form-control" formControlName="addressInput" [(ngModel)]="phys.address" required [ngClass]="{
+				<input id="addressInput" type="text" class="form-control" formControlName="addressInput" [ngClass]="{
 					'is-invalid': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -51,7 +51,7 @@
 				<label for="province" [ngClass]="{
 					'text-danger': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
 				}">Province *</label>
-				<select id="provinceSelector" class="form-control" formControlName="provinceSelector" [(ngModel)]="phys.province" required [ngClass]="{
+				<select id="provinceSelector" class="form-control" formControlName="provinceSelector" [ngClass]="{
 					'is-invalid': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
 				}">
 					<option value="" disabled selected>Select One</option>
@@ -78,7 +78,7 @@
 				<label for="city" [ngClass]="{
 					'text-danger': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
 				}">City *</label>
-				<input type="text" class="form-control" formControlName="cityInput" [(ngModel)]="phys.city" required [ngClass]="{
+				<input type="text" class="form-control" formControlName="cityInput" [ngClass]="{
 					'is-invalid': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -90,7 +90,7 @@
 				<label for="postalCode" [ngClass]="{
 					'text-danger': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
 				}">Postal Code *</label>
-				<input id="postalCodeInput" type="text"  class="form-control" formControlName="postalCodeInput" placeholder="(eg. V1V 1V1)" [(ngModel)]="phys.postalCode" required [ngClass]="{
+				<input id="postalCodeInput" type="text"  class="form-control" formControlName="postalCodeInput" placeholder="(eg. V1V 1V1)" [ngClass]="{
 					'is-invalid': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -103,7 +103,7 @@
 				<label for="email" [ngClass]="{
 					'text-danger': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
 				}">Email</label>
-				<input id="emailInput" type="text" formControlName="emailInput" placeholder="(eg. example@test.com)" class="form-control" [(ngModel)]="phys.email" [ngClass]="{
+				<input id="emailInput" type="text" formControlName="emailInput" placeholder="(eg. example@test.com)" class="form-control" [ngClass]="{
 					'is-invalid': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -115,7 +115,7 @@
 				<label for="phoneNumber" [ngClass]="{
 					'text-danger': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
 				}">Phone *</label>
-				<input id="phoneNumberInput" type="text" formControlName="phoneNumberInput" placeholder="(eg. 1112223333)" class="form-control" [(ngModel)]="phys.phoneNumber" required [ngClass]="{
+				<input id="phoneNumberInput" type="text" formControlName="phoneNumberInput" placeholder="(eg. 1112223333)" class="form-control" [ngClass]="{
 					'is-invalid': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
 				}"/>
 				<div class="form-control-feedback invalid-feedback"
@@ -126,9 +126,16 @@
      			</div>
 			</div>
 			<div id="descriptionFormGroup" class="form-group" formGroupName="descriptionFormGroup">
-				<label for="phone">Description</label>
-				<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [(ngModel)]="phys.description"></textarea>
-			</div>
+				<label for="description" [ngClass]="{
+					'text-danger': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)
+				}">Description</label>
+				<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [ngClass]="{
+					'is-invalid': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)}"></textarea>
+				<div class="form-control-feedback"
+           			*ngIf="descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)">
+        			<p class="text-danger">Description cannot be more than 200 characters long.</p>
+     			</div>			
+     		</div>
 			<div class="form-group">
 				<button id="submitPhysiciansFormButton" class="btn btn-primary" [disabled]="!physicianForm.valid">Submit</button>
 			</div>
