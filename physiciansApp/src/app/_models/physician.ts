@@ -10,13 +10,14 @@ export class Physician {
 	    public province: string,
 	    public postalCode: string,
 	    public phoneNumber: string,
-	    public email: string
+	    public email: string,
 	    public lat: number,
-	    public long: number
+	    public long: number,
+	    public imagePath: string,
     ) {}
 
 	static CreateDefault() : Physician {
-		return new Physician('', '', '', '', '', '', '', '', '', '', null, null);
+		return new Physician('', '', '', '', '', '', '', '', '', '', null, null, '');
 	}
 
 }

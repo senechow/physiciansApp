@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 
-import { Physician } from '../_models/physician';
-import { GeoCodingService } from '../_services/geocoding.service';
+import { Physician } from '../../_models/physician';
+import { GeoCodingService } from '../../_services/geocoding.service';
 
 @Component({
 	selector: 'physiciansMap',

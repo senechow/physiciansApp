@@ -13,7 +13,8 @@ var physicianSchema = new Schema({
     phoneNumber: String,
     email: String,
     lat: Number,
-    long: Number  
+    long: Number,
+    imagePath: String,  
 
 });
 

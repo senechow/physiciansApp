@@ -19,6 +19,6 @@ export class PhysiciansSearchComponent {
 	) { }
 
 	searchPhysicians() {
-		this.router.navigate(['/physicians']);
+		this.router.navigate(['/physicians-view']);
 	}
 }

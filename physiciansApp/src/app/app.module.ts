@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
 import { AgmCoreModule } from '@agm/core';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { appConfig } from './app.config';
@@ -13,23 +14,27 @@ import { PhysicianService } from './_services/physician.service';
 import { GeoCodingService } from './_services/geocoding.service';
 
 import { HomeComponent } from './home/home.component';
-import { PhysiciansComponent } from './physicians/physicians.component';
-import { PhysiciansMapComponent } from './physiciansMap/physiciansMap.component';
-import { PhysiciansListComponent } from './physiciansList/physiciansList.component';
+import { PhysiciansMapComponent } from './physicians-view/physicians-map/physiciansMap.component';
+import { PhysiciansListComponent } from './physicians-view/physicians-list/physiciansList.component';
 import { UploadPhysicianComponent } from './uploadPhysicians/uploadPhysicians.component';
 import { PhysiciansUploadLinkComponent } from './physiciansUploadLink/physiciansUploadLink.component';
 import { PhysiciansSearchComponent } from './physiciansSearch/physiciansSearch.component';
+import { PhysicianListItemComponent } from './physicians-view/physicians-list/physician-list-item/physician-list-item.component';
+import { PhysicianDetailsComponent } from './physicians-view/physicians-list/physician-details/physician-details.component';
+import { PhysiciansViewComponent } from './physicians-view/physicians-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PhysiciansComponent,
     PhysiciansMapComponent,
     PhysiciansListComponent,
     UploadPhysicianComponent,
     PhysiciansUploadLinkComponent,
     PhysiciansSearchComponent,
+    PhysicianListItemComponent,
+    PhysicianDetailsComponent,
+    PhysiciansViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,7 @@ import { PhysiciansSearchComponent } from './physiciansSearch/physiciansSearch.c
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    AngularFontAwesomeModule,
     AgmCoreModule.forRoot({
       apiKey: appConfig.googleAPIKey
     })

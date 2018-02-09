@@ -1,8 +1,5 @@
 <div class="row">
 	<div class="col-md-10">
-		<div class="row">
-			<a [routerLink]="['/']"> << Back </a>
-		</div>
 		<h1>Physicians In The System</h1>
 	</div>
 </div>
@@ -11,6 +8,6 @@
 		<physiciansMap></physiciansMap>
 	</div>
 	<div class="col-md-4">
-		<physiciansList></physiciansList>
+		<router-outlet></router-outlet>
 	</div>
 </div>

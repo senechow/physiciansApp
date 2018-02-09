@@ -1,0 +1,38 @@
+<button class="btn btn-primary" (click)="onBack()">Back to Results</button>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Dr. {{physician.firstName}} {{physician.lastName}}</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<img class="img-fluid" [src]="image" alt="assets/images/default-profile.jpg" style="max-height: 300px"/>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-1">
+		<fa name="map-marker"></fa>
+	</div>
+	<div class="col-md-11">
+		<p>{{physician.address}}</p>
+		<p>{{physician.city}}, {{physician.province}}</p>
+		<p>{{physician.postalCode}}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<fa name="phone"></fa><small>{{physician.phoneNumber}}</small>
+	</div>
+	<div class="col-md-6" *ngIf="physician.email">
+		<fa name="envelope"></fa><small>{{physician.email}}</small>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12" *ngIf="physician.description">
+		<p>{{physician.description}}</p>
+	</div>
+</div>
+<!-- 	<p class="list-group-item-text"><strong>Latitude:</strong> {{physician.lat}}</p>
+<p class="list-group-item-text"><strong>Longitude:</strong> {{physician.long}}</p> -->
+

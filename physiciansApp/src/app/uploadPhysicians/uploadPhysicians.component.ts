@@ -14,6 +14,7 @@ export class UploadPhysicianComponent implements OnInit {
 	physicianForm : FormGroup;
 	firstNameInput : FormControl;
 	lastNameInput : FormControl;
+	imagePathInput : FormControl;
 	addressInput : FormControl;
 	provinceSelector: FormControl;
 	cityInput : FormControl;
@@ -35,6 +36,7 @@ export class UploadPhysicianComponent implements OnInit {
 	createFormControls() {
 		this.firstNameInput = new FormControl('', Validators.required);
 		this.lastNameInput = new FormControl('', Validators.required);
+		this.imagePathInput = new FormControl('');
 		this.addressInput = new FormControl('', Validators.required);
 		this.provinceSelector = new FormControl('', Validators.required);
 		this.cityInput = new FormControl('', Validators.required);
@@ -60,6 +62,9 @@ export class UploadPhysicianComponent implements OnInit {
 			}),
 			lastNameFormGroup: new FormGroup({
 				lastNameInput: this.lastNameInput
+			}),
+			imagePathFormGroup: new FormGroup({
+				imagePathInput: this.imagePathInput
 			}),
 			addressFormGroup: new FormGroup({
 				addressInput: this.addressInput
@@ -89,6 +94,7 @@ export class UploadPhysicianComponent implements OnInit {
 		let phys = Physician.CreateDefault();
 		phys.firstName = this.firstNameInput.value;
 		phys.lastName = this.lastNameInput.value;
+		phys.imagePath = this.imagePathInput.value;
 		phys.address = this.addressInput.value;
 		phys.province = this.provinceSelector.value;
 		phys.city = this.cityInput.value;
@@ -96,24 +102,29 @@ export class UploadPhysicianComponent implements OnInit {
 		phys.email = this.emailInput.value;
 		phys.phoneNumber = this.phoneNumberInput.value;
 		phys.description = this.descriptionInput.value;
+
 		this.geocodingService.getCoordinates(phys.address, phys.province, phys.city, phys.postalCode)
 			.subscribe(coords => {
 			if(coords.status === "OK") {
 				phys.lat = coords.lat;
 				phys.long = coords.lng;
 				console.log("physician found!");
+
+				console.log(phys);
+
+				this.physicianService.insert(phys)
+					.subscribe(
+						data => {
+							console.log(phys);
+							this.physicianForm.reset();
+				});
+					
 			} else {
 				console.log("physician not found!");
-			};
+			}
+		});
 
-		console.log(phys);
+		
 
-		this.physicianService.insert(phys)
-			.subscribe(
-				data => {
-					console.log(phys);
-					this.physicianForm.reset();
-				}
-			)
 	}
 }
