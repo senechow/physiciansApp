@@ -93,16 +93,19 @@ router.put('/physicians/:id', (req, res, next) => {
         "city": req.body.city,
         "postalCode": req.body.postalCode,
         "phoneNumber": req.body.phoneNumber,
-        "email": req.body.email
+        "email": req.body.email,
+        "rating": req.body.rating,
+        "ratingCount": req.body.ratingCount
     };
 
-    Physician.findByIdAndUpdate(req.params.id, physicianToUpdate, function(err, phy){
+    Physician.findByIdAndUpdate(req.params.id, physicianToUpdate, {new: true}, function(err, phy){
 
         if(err) {
             sendError(err, res);
         }
 
         console.log("Physician updated!");
+        console.log(phy);
         response.data = phy;
         res.json(response);
     });

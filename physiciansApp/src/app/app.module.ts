@@ -12,6 +12,7 @@ import { appConfig } from './app.config';
 
 import { PhysicianService } from './_services/physician.service';
 import { GeoCodingService } from './_services/geocoding.service';
+import { StarRatingModule } from 'angular-star-rating';
 
 import { HomeComponent } from './home/home.component';
 import { PhysiciansMapComponent } from './physicians-view/physicians-map/physiciansMap.component';
@@ -34,7 +35,7 @@ import { PhysiciansViewComponent } from './physicians-view/physicians-view.compo
     PhysiciansSearchComponent,
     PhysicianListItemComponent,
     PhysicianDetailsComponent,
-    PhysiciansViewComponent,
+    PhysiciansViewComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { PhysiciansViewComponent } from './physicians-view/physicians-view.compo
     AngularFontAwesomeModule,
     AgmCoreModule.forRoot({
       apiKey: appConfig.googleAPIKey
-    })
+    }),
+    StarRatingModule.forRoot()
   ],
   providers: [
   	PhysicianService,

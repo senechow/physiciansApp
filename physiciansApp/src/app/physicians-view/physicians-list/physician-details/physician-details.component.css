@@ -1,7 +1,26 @@
-small {
+/*small {
 	color: white;
 }
 
 fa {
 	color: white;
+}
+
+div {
+	color: white !important;
+}*/
+
+.physician-details{
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	background-color: white;
+}
+
+h3, h5, p {
+	color: black !important;
+}
+
+star-rating-comp {
+	float: left !important;
 }

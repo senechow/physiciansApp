@@ -3,6 +3,23 @@
 	class="list-group-item list-group-item-action flex-column align-items-start clearfix"
 	(click)="onClick()"
 	>
-		<h3 class="list-group-item-heading">Dr. {{physician.firstName}} {{physician.lastName}}</h3>
+		<h4 class="list-group-item-heading">Dr. {{physician.firstName}} {{physician.lastName}}</h4>
+		<hr>
+		<div class="row" *ngIf="physician.ratingCount">
+			<div class="col-12">
+				<star-rating-comp
+				[starType]="'svg'"  
+				[readOnly]="true" 
+				[rating]="physician.ratingCount" 
+				[showHalfStars]="true"
+				[labelPosition]="'right'"
+				[labelText]="physician.ratingCount + (physician.ratingCount === 1 ? ' Rating' : ' Ratings')"></star-rating-comp>
+			</div>
+		</div>
+		<div class="row" *ngIf="!physician.ratingCount">
+			<div class="col-12">
+				<p>Not rated yet!</p>
+			</div>
+		</div>		
 		<img class="img-fluid" [src]="image" alt="assets/images/default-profile.jpg" />
 </a>

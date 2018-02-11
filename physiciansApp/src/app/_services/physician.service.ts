@@ -23,7 +23,7 @@ export class PhysicianService {
 	}
 
 	update(_id: string, physician: Physician) {
-		return this._http.put(appConfig.apiUrl + '/api/physicians/' + _id, physician);
+		return this._http.put(appConfig.apiUrl + '/api/physicians/' + _id, physician).map((response: Response) => response.json().data);
 	}
 
 	delete(_id: string) {

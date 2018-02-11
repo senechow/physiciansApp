@@ -14,7 +14,9 @@ var physicianSchema = new Schema({
     email: String,
     lat: Number,
     long: Number,
-    imagePath: String,  
+    imagePath: String,
+    ratingCount: Number,
+    rating: Number  
 
 });
 

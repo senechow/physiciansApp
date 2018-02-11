@@ -14,10 +14,12 @@ export class Physician {
 	    public lat: number,
 	    public long: number,
 	    public imagePath: string,
+	    public ratingCount: number,
+	    public rating: number,
     ) {}
 
 	static CreateDefault() : Physician {
-		return new Physician('', '', '', '', '', '', '', '', '', '', null, null, '');
+		return new Physician('', '', '', '', '', '', '', '', '', '', null, null, '', null, null);
 	}
 
 }

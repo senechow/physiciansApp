@@ -1,4 +1,4 @@
-h3{
+h3, h4{
 	color: black;
 }
 
@@ -7,6 +7,10 @@ p {
 }
 
 img {
-	height: 50%;
-	width: 50%;
+	height: 35%;
+	width: 35%;
+}
+
+star-rating-comp {
+	float: left !important;
 }

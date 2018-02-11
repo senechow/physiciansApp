@@ -1,38 +1,84 @@
-<button class="btn btn-primary" (click)="onBack()">Back to Results</button>
-
-<div class="row">
-	<div class="col-md-12">
-		<h3>Dr. {{physician.firstName}} {{physician.lastName}}</h3>
+<div class="physician-details">
+	
+	<div class="row">
+		<div class="col-12">
+			<button class="btn btn-link" (click)="onBack()">Back to Results</button>
+		</div>
 	</div>
+	<hr>
+	<div class="row">
+		<div class="col-12">
+			<h3>Dr. {{physician.firstName}} {{physician.lastName}}</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<img class="img-fluid" [src]="image" alt="assets/images/default-profile.jpg" style="max-height: 300px"/>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-1" *ngIf="totalRatingCount">
+			<h5>{{totalRating}}</h5>
+		</div>
+		
+		<div class="col-11">
+			<star-rating-comp
+					[starType]="'svg'"  
+					[readOnly]="true" 
+					[rating]="totalRating" 
+					[showHalfStars]="true"
+					[labelPosition]="'right'"
+					[labelText]="totalRatingCount + (totalRatingCount === 1 ? ' Rating' : ' Ratings')"></star-rating-comp>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p *ngIf="!totalRating">This physician has no ratings yet!</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-1">
+			<fa name="map-marker"></fa>
+		</div>
+		<div class="col-11">
+			<p>{{physician.address}}</p>
+			<p>{{physician.city}}, {{physician.province}}</p>
+			<p>{{physician.postalCode}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<fa name="phone"></fa><small>{{physician.phoneNumber}}</small>
+		</div>
+		<div class="col-6" *ngIf="physician.email">
+			<fa name="envelope"></fa><small>{{physician.email}}</small>
+		</div>
+	</div>
+	<div class="row"  *ngIf="physician.description">
+		<div class="col-12">
+			<hr>
+			<p>{{physician.description}}</p>
+		</div>
+	</div>
+	<hr>
+	<form [formGroup]="userRatingForm" (ngSubmit)="onRate()" *ngIf="!rated">
+		<div class="row">
+			<div class="col-5">
+				<star-rating-comp  [starType]="'svg'" [rating]="userRating" formControlName="userRatingControl" ></star-rating-comp>
+			</div>
+			<div class="col-7">
+				<button type="submit" class="btn btn-primary">Rate this Physician!</button>
+			</div>
+		</div>
+	</form>
+	<div class="row" *ngIf="rated">
+		<div class="col-12">
+			<p>Thank you for rating this physician!</p>
+		</div>
+	</div>
+	<!-- 	<p class="list-group-item-text"><strong>Latitude:</strong> {{physician.lat}}</p>
+	<p class="list-group-item-text"><strong>Longitude:</strong> {{physician.long}}</p> -->
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<img class="img-fluid" [src]="image" alt="assets/images/default-profile.jpg" style="max-height: 300px"/>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-1">
-		<fa name="map-marker"></fa>
-	</div>
-	<div class="col-md-11">
-		<p>{{physician.address}}</p>
-		<p>{{physician.city}}, {{physician.province}}</p>
-		<p>{{physician.postalCode}}</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-6">
-		<fa name="phone"></fa><small>{{physician.phoneNumber}}</small>
-	</div>
-	<div class="col-md-6" *ngIf="physician.email">
-		<fa name="envelope"></fa><small>{{physician.email}}</small>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12" *ngIf="physician.description">
-		<p>{{physician.description}}</p>
-	</div>
-</div>
-<!-- 	<p class="list-group-item-text"><strong>Latitude:</strong> {{physician.lat}}</p>
-<p class="list-group-item-text"><strong>Longitude:</strong> {{physician.long}}</p> -->
 
