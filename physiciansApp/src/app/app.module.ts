@@ -23,6 +23,7 @@ import { PhysiciansSearchComponent } from './physiciansSearch/physiciansSearch.c
 import { PhysicianListItemComponent } from './physicians-view/physicians-list/physician-list-item/physician-list-item.component';
 import { PhysicianDetailsComponent } from './physicians-view/physicians-list/physician-details/physician-details.component';
 import { PhysiciansViewComponent } from './physicians-view/physicians-view.component';
+import { PhysiciansSearchBarComponent } from './physicians-view/physicians-search-bar/physicians-search-bar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PhysiciansViewComponent } from './physicians-view/physicians-view.compo
     PhysiciansSearchComponent,
     PhysicianListItemComponent,
     PhysicianDetailsComponent,
-    PhysiciansViewComponent
+    PhysiciansViewComponent,
+    PhysiciansSearchBarComponent
   ],
   imports: [
     BrowserModule,

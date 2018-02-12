@@ -1,0 +1,13 @@
+<form (ngSubmit)="searchPhysicians()" #searchForm="ngForm">
+	<div class="input-group">
+		<input id="searchPhysicians" 
+				class="form-control" 
+				type="text" 
+				placeholder="Enter in either your doctor's name or address"
+				ngModel
+				name="searchPhysicians"/>
+		<div class="input-group-append">
+			<span> <button type="submit" class="btn btn-primary">Search</button> </span>
+		</div>
+	</div>
+</form>

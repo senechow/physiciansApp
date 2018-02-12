@@ -1,26 +1,49 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Physician } from '../../_models/physician';
+import { PhysicianService } from '../../_services/physician.service';
 import { GeoCodingService } from '../../_services/geocoding.service';
 
 @Component({
-	selector: 'physiciansMap',
+	selector: 'app-physicians-map',
 	templateUrl: './physiciansMap.component.html',
 	styleUrls: ['physiciansMap.component.css']
 })
-export class PhysiciansMapComponent implements OnInit {
+export class PhysiciansMapComponent implements OnInit, OnDestroy {
 
 	lat : number;
 	long : number;
 	msg : string;
 
+	physicians: Physician[];
+	physiciansSubscription: Subscription;
+
 	constructor(
-		private geoCodingService : GeoCodingService
+		private physicianService: PhysicianService,
+		private geoCodingService: GeoCodingService
 	) { }
 
 	ngOnInit() {
 		this.lat = 49.246292;
 		this.long = -123.116226;
+
+		this.physicians = this.physicianService.getPhysiciansList();
+		this.physiciansSubscription = this.physicianService.physiciansListChanged
+			.subscribe((physicians: Physician[]) =>{
+				this.physicians = physicians;
+				if(this.physicians 
+					&& this.physicians.length
+					&& this.physicians[0].lat
+					&& this.physicians[0].long) {
+					this.lat = physicians[0].lat;
+					this.long = physicians[0].long;
+				}
+			});
+	}
+
+	ngOnDestroy() {
+		this.physiciansSubscription.unsubscribe;
 	}
 
 	getPhysicianCoordinates(physician : Physician) {

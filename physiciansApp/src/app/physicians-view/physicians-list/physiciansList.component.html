@@ -1,3 +1,8 @@
-<div class="list-group">
+<div class="list-group" *ngIf="physicians && physicians.length">
 	<app-physician-list-item *ngFor="let physEl of physicians" [physician]="physEl"></app-physician-list-item>
+</div>
+<div class="row" *ngIf="!physicians || !physicians.length">
+	<div col-12>
+		<h5>No physicians found! Try another search?</h5>
+	</div>
 </div>

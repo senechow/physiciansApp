@@ -4,13 +4,30 @@ import { Physician } from "../_models/Physician";
 import { appConfig } from '../app.config';
 import 'rxjs/add/operator/map';
 
+import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class PhysicianService {
 
   constructor(private _http: Http) { }
 
-	getAll() {
-		return this._http.get(appConfig.apiUrl + '/api/physicians').map((response: Response) => response.json().data);
+    physiciansListChanged = new Subject<Physician[]>();
+    private physiciansList: Physician[] = [];
+
+    getPhysiciansList() {
+    	return this.physiciansList.slice();
+    }
+
+	getAll(searchStr?: string) {
+		let params = {};
+		if(searchStr) {
+			params = {params: {searchStr: searchStr}}
+		}
+		return this._http.get(appConfig.apiUrl + '/api/physicians', params)
+		.map((response: Response) =>{ 
+			this.physiciansList = response.json().data;
+			this.physiciansListChanged.next(this.physiciansList);
+		});
 	}
 
 	getById(_id: string) {
@@ -18,7 +35,6 @@ export class PhysicianService {
 	}
 
 	insert(physician: Physician) {
-		console.log(physician);
 		return this._http.post(appConfig.apiUrl + '/api/physicians',physician);
 	}
 

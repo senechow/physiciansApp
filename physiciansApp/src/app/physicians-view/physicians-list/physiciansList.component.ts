@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Physician } from '../../_models/physician';
 import { PhysicianService } from '../../_services/physician.service';
@@ -7,24 +8,26 @@ import { PhysicianService } from '../../_services/physician.service';
 	selector: 'physiciansList',
 	templateUrl: './physiciansList.component.html'
 })
-export class PhysiciansListComponent implements OnInit {
+export class PhysiciansListComponent implements OnInit, OnDestroy {
 
-	physicians: Physician[] = [];
+	physicians: Physician[];
+	physiciansSubscription: Subscription;
 
 	constructor(
 		private physicianService : PhysicianService
 	) { }
 
 	ngOnInit() {
-		this.getAll();
+		this.physicians = this.physicianService.getPhysiciansList();
+		this.physiciansSubscription = this.physicianService.physiciansListChanged
+			.subscribe((physicians: Physician[]) =>{
+				this.physicians = physicians;
+			});
 	}
 
-	getAll() {
-		this.physicianService.getAll()
-		.subscribe(physicians =>{
-			this.physicians = physicians;
-		});
-	}
+	ngOnDestroy() {
+    	this.physiciansSubscription.unsubscribe;
+ 	}
 
 
 }

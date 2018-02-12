@@ -1,11 +1,15 @@
 <div class="row">
-	<div class="col-md-10">
-		<h1>Physicians In The System</h1>
+	<div class="col-sm-7 col-md-8">
+		<div id="physSearchBar">
+			<app-physicians-search-bar></app-physicians-search-bar>
+		</div>
 	</div>
 </div>
-<div class="row">
+<div class="row" id="physView">
 	<div class="col-sm-7 col-md-8">
-		<physiciansMap></physiciansMap>
+		<div id="physMapView">
+			<app-physicians-map></app-physicians-map>
+		</div>
 	</div>
 	<div class="col-sm-5 col-md-4">
 		<router-outlet></router-outlet>

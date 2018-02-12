@@ -40,15 +40,65 @@ router.get('/users', (req, res) => {
 });
 
 router.get('/physicians', (req, res, next) => {
-    Physician.find(function(err, items) {
-        if(err) {
-           sendError(err, res);
-        }
-        console.log("Got physicians!");
-        response.data = items;
-        res.json(response);
-        
-    });
+    const searchStr = req.query.searchStr;
+    if(searchStr) {
+
+        Physician.aggregate([
+            { "$project": {"fullName": {"$concat": ["$firstName", " ", "$lastName"] },
+                           "addressProvince":  {"$concat": ["$address", " ", "$province"] },
+                           "addressPostalCode":  {"$concat": ["$address", " ", "postalCode"] },
+                           "firstName": "$firstName",
+                           "lastName": "$lastName",
+                           "address": "$address",
+                           "province": "$province",
+                           "city": "city",
+                           "postalCode": "$postalCode",
+                           "rating": "$rating",
+                           "ratingCount": "$ratingCount",
+                           "imagePath": "$imagePath", 
+                           "lat": "$lat",
+                           "long": "$long"
+                          }
+            },
+            { "$match": { "$or": [
+                                    {"firstName": { "$regex": searchStr, "$options": "i" } },
+                                    {"lastName": { "$regex": searchStr, "$options": "i" } },
+                                    {"address": { "$regex": searchStr, "$options": "i" } },
+                                    {"province": { "$regex": searchStr, "$options": "i" } },
+                                    {"city": { "$regex": searchStr, "$options": "i" } },
+                                    {"postalCode": { "$regex": searchStr, "$options": "i" } },
+                                    {"fullName": { "$regex": searchStr, "$options": "i" } },
+                                    {"addressProvince": { "$regex": searchStr, "$options": "i" } },
+                                    {"addressPostalCode": { "$regex": searchStr, "$options": "i" } },
+                        ] }
+            },
+            {"$project": {
+                           "firstName": "$firstName",
+                           "lastName": "$lastName",
+                           "rating": "$rating",
+                           "ratingCount": "$ratingCount",
+                           "imagePath": "$imagePath",
+                           "lat": "$lat",
+                           "long": "$long"
+                         }
+            }
+        ], function (err, physicians) {
+            if(err) sendError(err, res);
+            console.log("Got physicians!");
+            console.log(physicians);
+            response.data = physicians;
+            res.json(response);
+        });
+
+    } else {
+        Physician.find(function(err, physicians) {
+            if(err) sendError(err, res);
+            console.log("Got physicians!");
+            console.log(physicians);
+            res.json(response);
+            
+        });
+    }
 });
 
 router.post('/physicians', (req, res, next) => {
