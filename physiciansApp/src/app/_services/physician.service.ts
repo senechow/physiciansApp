@@ -11,8 +11,11 @@ export class PhysicianService {
 
   constructor(private _http: Http) { }
 
-    physiciansListChanged = new Subject<Physician[]>();
     private physiciansList: Physician[] = [];
+    private activePhysician: Physician;
+
+    physiciansListChanged = new Subject<Physician[]>();
+    activePhysicianChanged = new Subject<Physician>();
 
     getPhysiciansList() {
     	return this.physiciansList.slice();
@@ -24,9 +27,9 @@ export class PhysicianService {
 			params = {params: {searchStr: searchStr}}
 		}
 		return this._http.get(appConfig.apiUrl + '/api/physicians', params)
-		.map((response: Response) =>{ 
-			this.physiciansList = response.json().data;
-			this.physiciansListChanged.next(this.physiciansList);
+			.map((response: Response) =>{ 
+				this.physiciansList = response.json().data;
+				this.physiciansListChanged.next(this.physiciansList);
 		});
 	}
 
@@ -44,6 +47,11 @@ export class PhysicianService {
 
 	delete(_id: string) {
 		return this._http.delete(appConfig.apiUrl + '/api/physicians/' + _id);
+	}
+
+	setActivePhysician(physician: Physician) {
+		this.activePhysician = physician;
+		this.activePhysicianChanged.next(this.activePhysician);
 	}
 
 }

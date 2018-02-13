@@ -1,3 +1,11 @@
-<agm-map [latitude]="lat" [longitude]="long" [zoom]="12">
-	<agm-marker *ngFor="let physician of physicians" [latitude]="physician.lat" [longitude]="physician.long"></agm-marker>
+<agm-map [latitude]="lat" [longitude]="long" [zoom]="14">
+	<agm-marker *ngFor="let physician of physicians" 
+				[latitude]="physician.lat" 
+				[longitude]="physician.long"
+				(markerClick)="onMarkerClick(physician)">	
+		<agm-info-window 
+			[isOpen]="activeId === physician._id">
+				Dr. {{physician.firstName}} {{physician.lastName}}
+		</agm-info-window>
+	</agm-marker>
 </agm-map>

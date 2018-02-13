@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Physician } from '../../_models/physician';
@@ -14,14 +15,17 @@ export class PhysiciansMapComponent implements OnInit, OnDestroy {
 
 	lat : number;
 	long : number;
-	msg : string;
+	activeId: string;
 
 	physicians: Physician[];
-	physiciansSubscription: Subscription;
+	physiciansListChangedSubscription: Subscription;
+	activePhysicianChangedSubscription: Subscription;
 
 	constructor(
 		private physicianService: PhysicianService,
-		private geoCodingService: GeoCodingService
+		private geoCodingService: GeoCodingService,
+		private router: Router,
+		private route: ActivatedRoute
 	) { }
 
 	ngOnInit() {
@@ -29,7 +33,7 @@ export class PhysiciansMapComponent implements OnInit, OnDestroy {
 		this.long = -123.116226;
 
 		this.physicians = this.physicianService.getPhysiciansList();
-		this.physiciansSubscription = this.physicianService.physiciansListChanged
+		this.physiciansListChangedSubscription = this.physicianService.physiciansListChanged
 			.subscribe((physicians: Physician[]) =>{
 				this.physicians = physicians;
 				if(this.physicians 
@@ -40,10 +44,22 @@ export class PhysiciansMapComponent implements OnInit, OnDestroy {
 					this.long = physicians[0].long;
 				}
 			});
+		this.activePhysicianChangedSubscription = this.physicianService.activePhysicianChanged
+			.subscribe((physician: Physician) => {
+				if(physician && physician.lat
+					&& physician.long) {
+					this.lat = physician.lat;
+					this.long = physician.long;
+					this.activeId = physician._id;
+				} else {
+					this.activeId = null;
+				}
+			}); 
 	}
 
 	ngOnDestroy() {
-		this.physiciansSubscription.unsubscribe;
+		this.physiciansListChangedSubscription.unsubscribe;
+		this.activePhysicianChangedSubscription.unsubscribe;
 	}
 
 	getPhysicianCoordinates(physician : Physician) {
@@ -54,12 +70,15 @@ export class PhysiciansMapComponent implements OnInit, OnDestroy {
 			if(coords.status === "OK") {
 				this.lat = coords.lat;
 				this.long = coords.long;
-				this.msg = "Physician found!";
-			} else {
-				this.msg = "Physician was not found!"
 			}
 		});
-		
+	
+	}
+
+	onMarkerClick(physician: Physician) {
+		console.log(physician);
+		this.physicianService.setActivePhysician(physician);
+		this.router.navigate(['physicians-view', physician._id]);
 
 	}
 

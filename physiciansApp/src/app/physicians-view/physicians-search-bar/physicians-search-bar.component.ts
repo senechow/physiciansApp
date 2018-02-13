@@ -20,10 +20,8 @@ export class PhysiciansSearchBarComponent implements OnInit {
   }
 
   searchPhysicians() {
-
   	const searchStr = this.searchForm.value.searchPhysicians;
   	this.physicianService.getAll(searchStr).subscribe();
-  
   }
 
 }

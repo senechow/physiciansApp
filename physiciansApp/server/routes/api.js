@@ -93,8 +93,9 @@ router.get('/physicians', (req, res, next) => {
     } else {
         Physician.find(function(err, physicians) {
             if(err) sendError(err, res);
-            console.log("Got physicians!");
+            console.log("Got physicians no query params!");
             console.log(physicians);
+            response.data = physicians;
             res.json(response);
             
         });

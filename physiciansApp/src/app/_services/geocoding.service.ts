@@ -22,7 +22,6 @@ export class GeoCodingService {
 
 	 	return this._http.get(url)
 	 		.map((response : Response) => {
-	 			console.log(response.json());
 
 	 			var resJson = response.json();
 	 			if(resJson.status === "OK") {

@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Physician } from '../_models/physician';
@@ -11,6 +12,8 @@ import { PhysicianService } from '../_services/physician.service';
 })
 export class PhysiciansSearchComponent {
 
+	@ViewChild('searchForm') searchForm : NgForm;
+
 	physicians: Physician[] = [];
 
 	constructor(
@@ -19,6 +22,8 @@ export class PhysiciansSearchComponent {
 	) { }
 
 	searchPhysicians() {
+		const searchStr = this.searchForm.value.searchPhysicians;
+		this.physicianService.getAll(searchStr).subscribe();
 		this.router.navigate(['/physicians-view']);
 	}
 }

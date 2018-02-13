@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PhysicianService } from '../_services/physician.service';
+
 @Component({
   selector: 'app-physicians-view',
   templateUrl: './physicians-view.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhysiciansViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private physicianService: PhysicianService) { }
 
   ngOnInit() {
   }
