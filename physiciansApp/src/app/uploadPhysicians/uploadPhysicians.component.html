@@ -5,6 +5,13 @@
 
 <p>* means this is required.</p>
 
+<div class="row" *ngIf="invalidAddressMsg || physCreatedMsg">
+	<div class="col-12">
+		<p class="text-danger" *ngIf="invalidAddressMsg">{{invalidAddressMsg}}</p>
+		<p class="text-success" *ngIf="physCreatedMsg">{{physCreatedMsg}}</p>
+	</div>
+</div>
+
 <form id="physicianForm" (ngSubmit) = "insertPhysician()" novalidate [formGroup]="physicianForm">
 
 <div class="row">

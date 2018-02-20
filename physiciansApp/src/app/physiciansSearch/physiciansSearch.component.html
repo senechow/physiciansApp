@@ -8,11 +8,18 @@
 					type="text" 
 					placeholder="Enter in either your doctor's name or address"
 					ngModel
+					required
+					minlength="3" 
 					name="searchPhysicians"/>
 				<div class="input-group-append">
-					<span> <button type="submit" class="btn btn-primary">Search</button> </span>
+					<span> <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button> </span>
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="offset-2 col-8">
+		<h6>* Your search criteria must be at least 3 characters long!</h6>
 	</div>
 </div>

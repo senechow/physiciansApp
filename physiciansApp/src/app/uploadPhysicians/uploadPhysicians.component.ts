@@ -23,6 +23,9 @@ export class UploadPhysicianComponent implements OnInit {
 	phoneNumberInput : FormControl;
 	descriptionInput : FormControl;
 
+	invalidAddressMsg: string;
+	physCreatedMsg: string;
+
 	constructor(
 		private physicianService : PhysicianService,
 		private geocodingService : GeoCodingService
@@ -91,6 +94,7 @@ export class UploadPhysicianComponent implements OnInit {
 	}
 
 	insertPhysician() {
+
 		let phys = Physician.CreateDefault();
 		phys.firstName = this.firstNameInput.value;
 		phys.lastName = this.lastNameInput.value;
@@ -117,10 +121,17 @@ export class UploadPhysicianComponent implements OnInit {
 						data => {
 							console.log(phys);
 							this.physicianForm.reset();
+							this.invalidAddressMsg = "";
+							this.physCreatedMsg = "The physician was created successfully!";
+							document.body.scrollTop = document.documentElement.scrollTop = 0;
 				});
 					
 			} else {
 				console.log("physician not found!");
+				this.invalidAddressMsg = "The address entered below was not found! Please double check the street address, province, city and postal code!"
+				this.physCreatedMsg = "";
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+
 			}
 		});
 
