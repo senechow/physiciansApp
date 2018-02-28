@@ -111,7 +111,8 @@ router.put('/physicians/:id', (req, res, next) => {
         "phoneNumber": req.body.phoneNumber,
         "email": req.body.email,
         "rating": req.body.rating,
-        "ratingCount": req.body.ratingCount
+        "ratingCount": req.body.ratingCount,
+        "officeHours": req.body.officeHours
     };
 
     Physician.findByIdAndUpdate(req.params.id, physicianToUpdate, {new: true}, function(err, phy){
@@ -201,7 +202,7 @@ function findPhysiciansWithQueryParams(req, res, searchStr) {
     });
 }
 
-function handleSearchNoQueryParams(req, res) {
+function findPhysiciansWithNoQueryParams(req, res) {
     Physician.find(function(err, physicians) {
         if(err) {
          sendError(err, res);

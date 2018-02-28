@@ -6,9 +6,11 @@ import { UploadPhysicianComponent } from './uploadPhysicians/uploadPhysicians.co
 import { PhysiciansViewComponent } from './physicians-view/physicians-view.component';
 import { PhysiciansListComponent } from './physicians-view/physicians-list/physiciansList.component';
 import { PhysicianDetailsComponent } from './physicians-view/physicians-list/physician-details/physician-details.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes : Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'login', component: LoginComponent },
 	{ path: 'uploadPhysicians', component: UploadPhysicianComponent },
 	{ path: 'physicians-view', component: PhysiciansViewComponent, children: [
 		{path: '', component: PhysiciansListComponent },

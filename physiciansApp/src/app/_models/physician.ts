@@ -16,10 +16,15 @@ export class Physician {
 	    public imagePath: string,
 	    public ratingCount: number,
 	    public rating: number,
+	    public officeHours: {
+	    	day: string,
+	    	startTime: Date,
+	    	endTime: Date
+	    }[]
     ) {}
 
 	static CreateDefault() : Physician {
-		return new Physician('', '', '', '', '', '', '', '', '', '', null, null, '', null, null);
+		return new Physician('', '', '', '', '', '', '', '', '', '', null, null, '', null, null, null);
 	}
 
 }

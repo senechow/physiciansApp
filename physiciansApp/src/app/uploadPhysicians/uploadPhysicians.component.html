@@ -14,183 +14,311 @@
 
 <form id="physicianForm" (ngSubmit) = "insertPhysician()" novalidate [formGroup]="physicianForm">
 
-<div class="row">
-	<div class="col-md-12">
-		<div id="firstNameFormGroup" class="form-group" formGroupName="firstNameFormGroup">
-			<label for="firstName" [ngClass]="{
-				'text-danger': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
-			}">First Name *</label>
-			<input id="firstNameInput" type="text" class="form-control" formControlName="firstNameInput" [ngClass]="{
-				'is-invalid': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)">
-    			First name is required
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="firstNameFormGroup" class="form-group" formGroupName="firstNameFormGroup">
+				<label for="firstName" [ngClass]="{
+					'text-danger': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
+				}">First Name *</label>
+				<input id="firstNameInput" type="text" class="form-control" formControlName="firstNameInput" [ngClass]="{
+					'is-invalid': firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="firstNameInput.invalid &&  (firstNameInput.dirty || firstNameInput.touched)">
+	    			First name is required
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-12">
-		<div id="lastNameFormGroup" class="form-group" formGroupName="lastNameFormGroup">
-			<label for="lastName" [ngClass]="{
-				'text-danger': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
-			}">Last Name *</label>
-			<input id="lastNameInput" type="text" class="form-control" formControlName="lastNameInput" [ngClass]="{
-				'is-invalid': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)">
-    			Last name is required
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="lastNameFormGroup" class="form-group" formGroupName="lastNameFormGroup">
+				<label for="lastName" [ngClass]="{
+					'text-danger': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
+				}">Last Name *</label>
+				<input id="lastNameInput" type="text" class="form-control" formControlName="lastNameInput" [ngClass]="{
+					'is-invalid': lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="lastNameInput.invalid &&  (lastNameInput.dirty || lastNameInput.touched)">
+	    			Last name is required
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-12">
-		<div id="imagePathFormGroup" class="form-group" formGroupName="imagePathFormGroup">
-			<label for="imagePath">Image Path</label>
-			<input id="imagePathInput" type="text" class="form-control" formControlName="imagePathInput" #imagePath/>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="imagePathFormGroup" class="form-group" formGroupName="imagePathFormGroup">
+				<label for="imagePath">Image Path</label>
+				<input id="imagePathInput" type="text" class="form-control" formControlName="imagePathInput" #imagePath/>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row" *ngIf="imagePath.value">
-	<div class="col-md-6">
-		<img [src]="imagePath.value" class="img-fluid">
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="addressFormGroup" class="form-group" formGroupName="addressFormGroup">
-			<label for="address" [ngClass]="{
-				'text-danger': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
-			}">Street Address *</label>
-			<input id="addressInput" type="text" class="form-control" formControlName="addressInput" [ngClass]="{
-				'is-invalid': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="addressInput.invalid &&  (addressInput.dirty || addressInput.touched)">
-    			Street address is required
- 			</div>
+	<div class="row" *ngIf="imagePath.value">
+		<div class="col-md-6">
+			<img [src]="imagePath.value" class="img-fluid">
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="provinceFormGroup" class="form-group" formGroupName="provinceFormGroup">
-			<label for="province" [ngClass]="{
-				'text-danger': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
-			}">Province *</label>
-			<select id="provinceSelector" class="form-control" formControlName="provinceSelector" [ngClass]="{
-				'is-invalid': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
-			}">
-				<option value="" disabled selected>Select One</option>
-				<option>British Columbia</option>
-				<option>Alberta</option>
-				<option>Sasketchewan</option>
-				<option>Manitoba</option>
-				<option>Ontario</option>
-				<option>Quebec</option>
-				<option>Nova Scotia</option>
-				<option>New Brunswick</option>
-				<option>Prince Edward Island</option>
-				<option>Newfoundland</option>
-				<option>Yukon</option>
-				<option>Northwest Territories</option>
-				<option>Nunavut</option>
-			</select>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)">
-    			Province is required
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="addressFormGroup" class="form-group" formGroupName="addressFormGroup">
+				<label for="address" [ngClass]="{
+					'text-danger': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
+				}">Street Address *</label>
+				<input id="addressInput" type="text" class="form-control" formControlName="addressInput" [ngClass]="{
+					'is-invalid': addressInput.invalid &&  (addressInput.dirty || addressInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="addressInput.invalid &&  (addressInput.dirty || addressInput.touched)">
+	    			Street address is required
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="cityFormGroup" class="form-group" formGroupName="cityFormGroup">
-			<label for="city" [ngClass]="{
-				'text-danger': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
-			}">City *</label>
-			<input type="text" class="form-control" formControlName="cityInput" [ngClass]="{
-				'is-invalid': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="cityInput.invalid &&  (cityInput.dirty || cityInput.touched)">
-    			City is required
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="provinceFormGroup" class="form-group" formGroupName="provinceFormGroup">
+				<label for="province" [ngClass]="{
+					'text-danger': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
+				}">Province *</label>
+				<select id="provinceSelector" class="form-control" formControlName="provinceSelector" [ngClass]="{
+					'is-invalid': provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)
+				}">
+					<option value="" disabled selected>Select One</option>
+					<option>British Columbia</option>
+					<option>Alberta</option>
+					<option>Sasketchewan</option>
+					<option>Manitoba</option>
+					<option>Ontario</option>
+					<option>Quebec</option>
+					<option>Nova Scotia</option>
+					<option>New Brunswick</option>
+					<option>Prince Edward Island</option>
+					<option>Newfoundland</option>
+					<option>Yukon</option>
+					<option>Northwest Territories</option>
+					<option>Nunavut</option>
+				</select>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="provinceSelector.invalid &&  (provinceSelector.dirty || provinceSelector.touched)">
+	    			Province is required
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="postalCodeFormGroup" class="form-group" formGroupName="postalCodeFormGroup">
-			<label for="postalCode" [ngClass]="{
-				'text-danger': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
-			}">Postal Code *</label>
-			<input id="postalCodeInput" type="text"  class="form-control" formControlName="postalCodeInput" placeholder="(eg. V1V 1V1)" [ngClass]="{
-				'is-invalid': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)">
-				<p class="text-danger" *ngIf="postalCodeInput.errors.required">Postal code is required</p>
-  				<p class="text-danger" *ngIf="postalCodeInput.errors.pattern">Postal code must be of the format X1X 1X1</p>
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="cityFormGroup" class="form-group" formGroupName="cityFormGroup">
+				<label for="city" [ngClass]="{
+					'text-danger': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
+				}">City *</label>
+				<input type="text" class="form-control" formControlName="cityInput" [ngClass]="{
+					'is-invalid': cityInput.invalid &&  (cityInput.dirty || cityInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="cityInput.invalid &&  (cityInput.dirty || cityInput.touched)">
+	    			City is required
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="emailFormGroup" class="form-group" formGroupName="emailFormGroup">
-			<label for="email" [ngClass]="{
-				'text-danger': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
-			}">Email</label>
-			<input id="emailInput" type="text" formControlName="emailInput" placeholder="(eg. example@test.com)" class="form-control" [ngClass]="{
-				'is-invalid': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="emailInput.invalid &&  (emailInput.dirty || emailInput.touched)">
-    			Email is of invalid format. Example: someone@email.com
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="postalCodeFormGroup" class="form-group" formGroupName="postalCodeFormGroup">
+				<label for="postalCode" [ngClass]="{
+					'text-danger': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
+				}">Postal Code *</label>
+				<input id="postalCodeInput" type="text"  class="form-control" formControlName="postalCodeInput" placeholder="(eg. V1V 1V1)" [ngClass]="{
+					'is-invalid': postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="postalCodeInput.invalid &&  (postalCodeInput.dirty || postalCodeInput.touched)">
+					<p class="text-danger" *ngIf="postalCodeInput.errors.required">Postal code is required</p>
+	  				<p class="text-danger" *ngIf="postalCodeInput.errors.pattern">Postal code must be of the format X1X 1X1</p>
+	 			</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="phoneNumberFormGroup" class="form-group" formGroupName="phoneNumberFormGroup">
-			<label for="phoneNumber" [ngClass]="{
-				'text-danger': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
-			}">Phone *</label>
-			<input id="phoneNumberInput" type="text" formControlName="phoneNumberInput" placeholder="(eg. 1112223333)" class="form-control" [ngClass]="{
-				'is-invalid': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
-			}"/>
-			<div class="form-control-feedback invalid-feedback"
-       			*ngIf="phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)">
-    			<p class="text-danger" *ngIf="phoneNumberInput.errors.required">Phone number is required.</p>
-  				<p class="text-danger" *ngIf="phoneNumberInput.errors.pattern">Phone number must be in all digits.</p>
-  				<p class="text-danger" *ngIf="phoneNumberInput.errors.minlength">Phone number must be at least 10 digits in length.</p>
- 			</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="emailFormGroup" class="form-group" formGroupName="emailFormGroup">
+				<label for="email" [ngClass]="{
+					'text-danger': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
+				}">Email</label>
+				<input id="emailInput" type="text" formControlName="emailInput" placeholder="(eg. example@test.com)" class="form-control" [ngClass]="{
+					'is-invalid': emailInput.invalid &&  (emailInput.dirty || emailInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="emailInput.invalid &&  (emailInput.dirty || emailInput.touched)">
+	    			Email is of invalid format. Example: someone@email.com
+	 			</div>
+			</div>
 		</div>
-	</div>	
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<div id="descriptionFormGroup" class="form-group" formGroupName="descriptionFormGroup">
-			<label for="description" [ngClass]="{
-				'text-danger': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)
-			}">Description</label>
-			<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [ngClass]="{
-				'is-invalid': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)}"></textarea>
-			<div class="form-control-feedback"
-       			*ngIf="descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)">
-    			<p class="text-danger">Description cannot be more than 200 characters long.</p>
- 			</div>			
- 		</div>
- 	</div>
- </div>
-<div class="form-group">
-	<button id="submitPhysiciansFormButton" class="btn btn-primary" [disabled]="!physicianForm.valid">Submit</button>
-</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="phoneNumberFormGroup" class="form-group" formGroupName="phoneNumberFormGroup">
+				<label for="phoneNumber" [ngClass]="{
+					'text-danger': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
+				}">Phone *</label>
+				<input id="phoneNumberInput" type="text" formControlName="phoneNumberInput" placeholder="(eg. 1112223333)" class="form-control" [ngClass]="{
+					'is-invalid': phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)
+				}"/>
+				<div class="form-control-feedback invalid-feedback"
+	       			*ngIf="phoneNumberInput.invalid &&  (phoneNumberInput.dirty || phoneNumberInput.touched)">
+	    			<p class="text-danger" *ngIf="phoneNumberInput.errors.required">Phone number is required.</p>
+	  				<p class="text-danger" *ngIf="phoneNumberInput.errors.pattern">Phone number must be in all digits.</p>
+	  				<p class="text-danger" *ngIf="phoneNumberInput.errors.minlength">Phone number must be at least 10 digits in length.</p>
+	 			</div>
+			</div>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="descriptionFormGroup" class="form-group" formGroupName="descriptionFormGroup">
+				<label for="description" [ngClass]="{
+					'text-danger': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)
+				}">Description</label>
+				<textarea id="descriptionInputs" formControlName="descriptionInput" rows="4" placeholder="(Max 200 characters)" class="form-control" [ngClass]="{
+					'is-invalid': descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)}"></textarea>
+				<div class="form-control-feedback"
+	       			*ngIf="descriptionInput.invalid &&  (descriptionInput.dirty || descriptionInput.touched)">
+	    			<p class="text-danger">Description cannot be more than 200 characters long.</p>
+	 			</div>			
+	 		</div>
+	 	</div>
+	 </div>
+	 <div class="form-group" formGroupName="officeHoursFormGroup">
+		 <div class="row">
+		 	<div class="col-md-6">
+		 		<label for="officeHours">Office Hours: *</label>
+		 	</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursMon" type="checkbox" autocomplete="off"><label>Mon</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursMonStartTime" [owlDateTimeTrigger]="dtMonSt" [owlDateTime]="dtMonSt">
+					<owl-date-time [pickerType]="'timer'" #dtMonSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursMonEndTime" [owlDateTimeTrigger]="dtMonEd" [owlDateTime]="dtMonEd">
+					<owl-date-time [pickerType]="'timer'" #dtMonEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursTue" type="checkbox" autocomplete="off"><label>Tue</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursTueStartTime" [owlDateTimeTrigger]="dtTueSt" [owlDateTime]="dtTueSt">
+					<owl-date-time [pickerType]="'timer'" #dtTueSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursTueEndTime" [owlDateTimeTrigger]="dtTueEd" [owlDateTime]="dtTueEd">
+					<owl-date-time [pickerType]="'timer'" #dtTueEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursWed" type="checkbox" autocomplete="off"><label>Wed</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursWedStartTime" [owlDateTimeTrigger]="dtWedSt" [owlDateTime]="dtWedSt">
+					<owl-date-time [pickerType]="'timer'" #dtWedSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursWedEndTime" [owlDateTimeTrigger]="dtWedEd" [owlDateTime]="dtWedEd">
+					<owl-date-time [pickerType]="'timer'" #dtWedEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursThu" type="checkbox" autocomplete="off"><label>Thu</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursThuStartTime" [owlDateTimeTrigger]="dtThuSt" [owlDateTime]="dtThuSt">
+					<owl-date-time [pickerType]="'timer'" #dtThuSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursThuEndTime" [owlDateTimeTrigger]="dtThuEd" [owlDateTime]="dtThuEd">
+					<owl-date-time [pickerType]="'timer'" #dtThuEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursFri" type="checkbox" autocomplete="off"><label>Fri</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursFriStartTime" [owlDateTimeTrigger]="dtFriSt" [owlDateTime]="dtFriSt">
+					<owl-date-time [pickerType]="'timer'" #dtFriSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursFriEndTime" [owlDateTimeTrigger]="dtFriEd" [owlDateTime]="dtFriEd">
+					<owl-date-time [pickerType]="'timer'" #dtFriEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursSat" type="checkbox" autocomplete="off"><label>Sat</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursSatStartTime" [owlDateTimeTrigger]="dtSatSt" [owlDateTime]="dtSatSt">
+					<owl-date-time [pickerType]="'timer'" #dtSatSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursSatEndTime" [owlDateTimeTrigger]="dtSatEd" [owlDateTime]="dtSatEd">
+					<owl-date-time [pickerType]="'timer'" #dtSatEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-1">
+				<input formControlName="officeHoursSun" type="checkbox" autocomplete="off"><label>Sun</label>
+			</div>
+			<div class="col-md-4">
+				<label> Start Time
+					<input formControlName="officeHoursSunStartTime" [owlDateTimeTrigger]="dtSunSt" [owlDateTime]="dtSunSt">
+					<owl-date-time [pickerType]="'timer'" #dtSunSt></owl-date-time>
+				</label>
+			</div>
+			<div class="col-md-4">
+				<label> End Time
+					<input formControlName="officeHoursSunEndTime" [owlDateTimeTrigger]="dtSunEd" [owlDateTime]="dtSunEd">
+					<owl-date-time [pickerType]="'timer'" #dtSunEd></owl-date-time>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<button id="submitPhysiciansFormButton" class="btn btn-primary" [disabled]="!physicianForm.valid">Submit</button>
+	</div>
+
 </form>

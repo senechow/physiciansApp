@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const OfficeHour = require("../model/physician");
 
 // Define a schema.
 var userSchema = new Schema({

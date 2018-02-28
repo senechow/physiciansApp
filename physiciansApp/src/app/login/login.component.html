@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="offset-4 col-4 text-center mx-auto">
+		<google-signin
+		  [clientId]="clientId"
+		  [width]="300"
+		  [longTitle]="'Hello There!'"
+		  (googleSignInSuccess)="onGoogleSignInSuccess($event)">
+		  >
+		</google-signin>
+	</div>
+</div>

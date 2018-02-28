@@ -3,16 +3,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
-
-import { AgmCoreModule } from '@agm/core';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { appConfig } from './app.config';
 
 import { PhysicianService } from './_services/physician.service';
 import { GeoCodingService } from './_services/geocoding.service';
+
 import { StarRatingModule } from 'angular-star-rating';
+import { GoogleSignInComponent } from 'angular-google-signin';
+import { AgmCoreModule } from '@agm/core';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { HomeComponent } from './home/home.component';
 import { PhysiciansMapComponent } from './physicians-view/physicians-map/physiciansMap.component';
@@ -24,6 +27,7 @@ import { PhysicianListItemComponent } from './physicians-view/physicians-list/ph
 import { PhysicianDetailsComponent } from './physicians-view/physicians-list/physician-details/physician-details.component';
 import { PhysiciansViewComponent } from './physicians-view/physicians-view.component';
 import { PhysiciansSearchBarComponent } from './physicians-view/physicians-search-bar/physicians-search-bar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { PhysiciansSearchBarComponent } from './physicians-view/physicians-searc
     PhysicianListItemComponent,
     PhysicianDetailsComponent,
     PhysiciansViewComponent,
-    PhysiciansSearchBarComponent
+    PhysiciansSearchBarComponent,
+    LoginComponent,
+    GoogleSignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,10 @@ import { PhysiciansSearchBarComponent } from './physicians-view/physicians-searc
     AgmCoreModule.forRoot({
       apiKey: appConfig.googleAPIKey
     }),
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule
   ],
   providers: [
   	PhysicianService,

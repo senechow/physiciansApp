@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 // Define a schema.
 var physicianSchema = new Schema({
 	firstName: String,
@@ -16,7 +17,12 @@ var physicianSchema = new Schema({
     long: Number,
     imagePath: String,
     ratingCount: Number,
-    rating: Number  
+    rating: Number,
+    officeHours: [{
+        day: String,
+        startTime: Date,
+        endTime: Date
+    }]
 
 });
 
