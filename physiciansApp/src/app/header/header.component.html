@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" routerLink="/">Find A Physician</a>
+	
+	 <div class="collapse navbar-collapse" id="navbarNav">
+	     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item" routerLinkActive="active">
+	        <a class="nav-link" 
+				routerLink="/uploadPhysicians"
+	        	style="cursor: pointer"
+	        	>Upload</a>
+	      </li>
+	    </ul>
+	    <ul class="navbar-nav my-2 my-lg-0">
+	    	<li *ngIf="!googleUser">
+	    		<a class="nav-link"
+	    			style="cursor: pointer"
+	    			routerLink="/login" 
+	    			>Login</a>
+	    	</li>
+	    	<li *ngIf="googleUser">
+	    		<a class="nav-link"
+	    			style="cursor: pointer"
+	    			(click)="onSignOut()"
+	    			>Logout</a>
+	    	</li>
+	    </ul>
+ 	 </div>
+</nav>

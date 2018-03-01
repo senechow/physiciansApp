@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { appConfig } from '../app.config';
+
+import { AuthorizationService } from '../_services/authorization.service';
 
 import {GoogleSignInSuccess} from 'angular-google-signin';
 
@@ -10,15 +13,17 @@ import {GoogleSignInSuccess} from 'angular-google-signin';
 })
 export class LoginComponent implements OnInit {
 
-  clientId: string = appConfig.googleAPIKey;
+  clientId: string = appConfig.clientId;
 
-  constructor() { }
+  constructor(private authorizationService: AuthorizationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   onGoogleSignInSuccess(event: GoogleSignInSuccess) {
-  	console.log("Hello!");
+  	this.authorizationService.signIn(event);
+    this.router.navigate(['/']);
   }
 
 }

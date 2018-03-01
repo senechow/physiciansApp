@@ -10,6 +10,7 @@ import { appConfig } from './app.config';
 
 import { PhysicianService } from './_services/physician.service';
 import { GeoCodingService } from './_services/geocoding.service';
+import { AuthorizationService } from './_services/authorization.service';
 
 import { StarRatingModule } from 'angular-star-rating';
 import { GoogleSignInComponent } from 'angular-google-signin';
@@ -28,6 +29,7 @@ import { PhysicianDetailsComponent } from './physicians-view/physicians-list/phy
 import { PhysiciansViewComponent } from './physicians-view/physicians-view.component';
 import { PhysiciansSearchBarComponent } from './physicians-view/physicians-search-bar/physicians-search-bar.component';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { LoginComponent } from './login/login.component';
     PhysiciansSearchBarComponent,
     LoginComponent,
     GoogleSignInComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
   	PhysicianService,
-    GeoCodingService
+    GeoCodingService,
+    AuthorizationService
   ],
   bootstrap: [AppComponent]
 })
