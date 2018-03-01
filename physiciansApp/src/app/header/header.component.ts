@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSignOut() {
-	this.authorizationService.signOut();
+	  this.authorizationService.signOut();
   }
 
 }
